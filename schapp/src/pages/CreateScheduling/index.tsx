@@ -1,8 +1,9 @@
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import usersRespository from '../../services/database/users/users.respository';
 import avaImg from '../../assets/avatar.png';
 import { ISelectedProfessor, TurnType } from '../../services/database/professors/professors.interface';
 import ProfessorServices from '../../services/professors.services';
@@ -41,22 +42,32 @@ const CreateScheduling: React.FC = () => {
     }
 
     const fetchTurns = async () => {
-        const NAT = await ProfessorServices.getAllProfessorSchedules(selectedProfessor, formatDate(selectedDate));
+        const user_id = await usersRespository.getUser_ID();
+        if(!user_id) {
+            Alert.alert(
+                "User não logado!",
+                "Porfavor refaça a autenticação."
+            )
+            return false
+        }
 
-        if (NAT.includes(TurnType.MORNING)) setEnabledMorningButton(false);
+        const NAT_P = await ProfessorServices.getAllProfessorSchedules(selectedProfessor, formatDate(selectedDate));
+        const NAT_U = await UserServices.getAllUserTurns(user_id, formatDate(selectedDate));
+
+        if (NAT_P.includes(TurnType.MORNING) || NAT_U.includes(TurnType.MORNING)) setEnabledMorningButton(false);
         else setEnabledMorningButton(true);
 
 
-        if (NAT.includes(TurnType.EVENING)) setEnabledEveningButton(false);
+        if (NAT_P.includes(TurnType.EVENING) || NAT_U.includes(TurnType.EVENING)) setEnabledEveningButton(false);
         else setEnabledEveningButton(true);
 
 
 
-        if (NAT.includes(TurnType.NIGHT)) setEnabledNightButton(false);
+        if (NAT_P.includes(TurnType.NIGHT) || NAT_U.includes(TurnType.NIGHT)) setEnabledNightButton(false);
         else setEnabledNightButton(true);
 
         if (selectedTurn) {
-            if (NAT.includes(selectedTurn)) setEnabledSchedulingButton(false);
+            if (NAT_P.includes(selectedTurn) || NAT_U.includes(selectedTurn)) setEnabledSchedulingButton(false);
             else setEnabledSchedulingButton(true);
         }
 
@@ -109,7 +120,6 @@ const CreateScheduling: React.FC = () => {
         };
     }
 
-
     const navBack = useCallback(() => {
         navigation.goBack();
     }, [navigation]);
@@ -149,6 +159,8 @@ const CreateScheduling: React.FC = () => {
                 {showDate &&
                     (<DateTimePicker
                         mode="date"
+                        minimumDate={new Date()}
+                        maximumDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
                         display="calendar"
                         onChange={handleChangeDate}
                         value={selectedDate} />

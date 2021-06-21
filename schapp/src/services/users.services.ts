@@ -240,6 +240,13 @@ async function getAllUserSchedules(id_user: string) {
     return schedules;
 }
 
+async function getAllUserTurns(id_user: string, date: string) {
+    const schedules = await UserRepository.getAllSchedules(id_user);
+
+    if (!schedules) return [];
+
+    return schedules.filter(schedule => schedule.date === date).map(schedule => schedule.turn);
+}
 
 export default {
     createUser,
@@ -248,7 +255,8 @@ export default {
     getAllUserSchedules,
     updateUser,
     logoutUser,
-    removeSchedule
+    removeSchedule,
+    getAllUserTurns
 }
 
 
