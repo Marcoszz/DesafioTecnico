@@ -113,23 +113,21 @@ const Dashboard: React.FC = () => {
                     activeTextStyle={{ color: '#F4EDE8', fontFamily: 'RobotoSlab-Medium' }}
                 >
                     <ProfessorList
-                        ListEmptyComponent={() => {
-                            if (loading) {
-                                return (
-                                    <Spinner
-                                        color="#F4EDE8"
-                                        size="large"
-                                    />
-                                )
-                            } else {
-                                return (
-                                    <ProfessorMetaText
-                                        style={{ textAlign: 'center', paddingTop: "20px" }}>
-                                        Sem Professores !
-                                    </ProfessorMetaText>
-                                )
-                            }
-                        }}
+                        ListEmptyComponent={ 
+                            loading ? 
+                            (
+                                <Spinner
+                                    color="#F4EDE8"
+                                    size="large"
+                                />
+                            ) : (
+                                <ProfessorMetaText
+                                    style={{ textAlign:"center", paddingTop: 250, fontSize: 15 }}
+                                >
+                                    Sem Professores !
+                                </ProfessorMetaText>
+                            )
+                        }
                         data={professors}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
@@ -159,24 +157,23 @@ const Dashboard: React.FC = () => {
                     activeTextStyle={{ color: '#F4EDE8', fontFamily: 'RobotoSlab-Medium' }}
                 >
                     <SchedulesList
-                        ListEmptyComponent={() => {
-                            if (loading) {
-                                return (
-                                    <Spinner
-                                        color="#F4EDE8"
-                                        size="large"
-                                    />
-                                )
-                            } else {
-                                return (
-                                    <SchedulesMetaText
-                                        style={{ textAlign: 'center', paddingTop: "20px" }}>
-                                        Sem Agendamentos !
-                                    </SchedulesMetaText>
-                                )
-                            }
-                        }}
-                        data={schedules}
+                        ListEmptyComponent={ 
+                            loading ? 
+                            (
+                                <Spinner
+                                    color="#F4EDE8"
+                                    size="large"
+                                />
+                            ) : (
+                                <SchedulesMetaText
+                                    style={{ textAlign:"center", paddingTop: 250, fontSize: 15 }}
+                                >
+                                    Sem Agendamentos !
+                                </SchedulesMetaText>
+                            )
+                        }
+
+                        data={schedules.reverse()}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <SchedulesContainer onPress={() => { handleScheduleTouch(item.id, item.professor.id) }}>
@@ -205,7 +202,6 @@ const Dashboard: React.FC = () => {
                     />
                 </Tab>
             </Tabs>
-
         </Container>
     )
 }
