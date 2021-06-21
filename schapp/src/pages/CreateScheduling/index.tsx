@@ -42,21 +42,21 @@ const CreateScheduling: React.FC = () => {
 
     const fetchTurns = async () => {
         const NAT = await ProfessorServices.getAllProfessorSchedules(selectedProfessor, formatDate(selectedDate));
-        
+
         if (NAT.includes(TurnType.MORNING)) setEnabledMorningButton(false);
         else setEnabledMorningButton(true);
-        
+
 
         if (NAT.includes(TurnType.EVENING)) setEnabledEveningButton(false);
         else setEnabledEveningButton(true);
-        
+
 
 
         if (NAT.includes(TurnType.NIGHT)) setEnabledNightButton(false);
         else setEnabledNightButton(true);
-        
-        if(selectedTurn){
-            if(NAT.includes(selectedTurn)) setEnabledSchedulingButton(false);
+
+        if (selectedTurn) {
+            if (NAT.includes(selectedTurn)) setEnabledSchedulingButton(false);
             else setEnabledSchedulingButton(true);
         }
 
@@ -77,7 +77,7 @@ const CreateScheduling: React.FC = () => {
 
     const handleMorningPress = () => {
         setSelectedTurn(TurnType.MORNING);
-        
+
     }
 
     const handleEveningPress = () => {

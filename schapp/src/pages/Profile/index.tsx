@@ -13,7 +13,7 @@ import UsersService from "../../services/users.services";
 import getValidationErrors from "../../utils/getValidationErrors";
 import { BackButton, Container, LogOutButton, Title, UserAvatar } from './styles';
 
-interface Prop{
+interface Prop {
     updateUser: (user?: firebase.User) => void
 }
 
@@ -24,7 +24,7 @@ interface FormData {
     passConfirm: string;
 }
 
-const Profile = ({updateUser}: Prop) => {
+const Profile = ({ updateUser }: Prop) => {
     const formRef = useRef<FormHandles>(null);
     const navigation = useNavigation();
 
@@ -121,7 +121,7 @@ const Profile = ({updateUser}: Prop) => {
                         <LogOutButton onPress={() => {
                             UsersService.logoutUser();
                             updateUser(undefined);
-                            }}>
+                        }}>
                             <Icon name="log-out" size={24} color="#F4EDE8"></Icon>
                         </LogOutButton>
 

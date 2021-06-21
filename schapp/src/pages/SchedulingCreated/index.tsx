@@ -15,7 +15,7 @@ interface RouteParams {
 
 LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
-const SchedulingCreated: React.FC = () =>{
+const SchedulingCreated: React.FC = () => {
     const navigation = useNavigation();
     const { params } = useRoute();
 
@@ -32,8 +32,8 @@ const SchedulingCreated: React.FC = () =>{
         });
     }, [navigation])
 
-    
-    
+
+
     return (
         <Container>
             <Icon name="check" size={80} color="#04D361"></Icon>
@@ -46,6 +46,6 @@ const SchedulingCreated: React.FC = () =>{
             </OkButton>
         </Container>
     )
-} 
+}
 
 export default SchedulingCreated;

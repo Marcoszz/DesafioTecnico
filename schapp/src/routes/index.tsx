@@ -9,7 +9,7 @@ const Routes: React.FC = () => {
         setUser(user)
     }
 
-    return user ? <AppRoutes updateUser={upUserOn}/> : <AuthRoutes updateUser={upUserOn}/>
+    return user ? <AppRoutes updateUser={upUserOn} /> : <AuthRoutes updateUser={upUserOn} />
 }
 
 export default Routes

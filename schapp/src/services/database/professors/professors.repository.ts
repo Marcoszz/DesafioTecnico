@@ -1,6 +1,5 @@
 import firebase from "../config/fire";
 import { IProfessor, IProfessorSchedule, TurnType } from "./professors.interface";
-const { v4: uuidv4 } = require('uuid');
 
 const db = firebase.database();
 

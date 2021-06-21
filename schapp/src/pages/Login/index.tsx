@@ -13,7 +13,7 @@ import UsersService from "../../services/users.services";
 import getValidationErrors from "../../utils/getValidationErrors";
 import { Container, CrtAccButton, CrtAccButtonText, Title } from './styles';
 
-interface Prop{
+interface Prop {
     updateUser: (user?: firebase.User) => void
 }
 
@@ -24,7 +24,7 @@ export interface LoginFormData {
 
 LogBox.ignoreLogs(['Setting a timer']);
 
-const Login = ({updateUser}: Prop) => {
+const Login = ({ updateUser }: Prop) => {
     const formRef = useRef<FormHandles>(null);
     const navigation = useNavigation();
     const passInputRef = useRef<TextInput>(null);
@@ -50,8 +50,8 @@ const Login = ({updateUser}: Prop) => {
                 if (result) {
                     const user = firebase.auth().currentUser
 
-                    if(user){
-                        updateUser(user); 
+                    if (user) {
+                        updateUser(user);
                     }
                 }
 

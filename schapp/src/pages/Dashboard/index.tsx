@@ -124,7 +124,7 @@ const Dashboard: React.FC = () => {
                             } else {
                                 return (
                                     <ProfessorMetaText
-                                        style={{ textAlign: 'center', paddingTop: "20px"}}>
+                                        style={{ textAlign: 'center', paddingTop: "20px" }}>
                                         Sem Professores !
                                     </ProfessorMetaText>
                                 )
@@ -170,7 +170,7 @@ const Dashboard: React.FC = () => {
                             } else {
                                 return (
                                     <SchedulesMetaText
-                                        style={{ textAlign: 'center', paddingTop: "20px"}}>
+                                        style={{ textAlign: 'center', paddingTop: "20px" }}>
                                         Sem Agendamentos !
                                     </SchedulesMetaText>
                                 )
