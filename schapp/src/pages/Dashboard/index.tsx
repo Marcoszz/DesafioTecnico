@@ -26,6 +26,7 @@ import { IUserSchedule } from '../../services/database/users/users.interface';
 import Icon from 'react-native-vector-icons/Feather';
 import { Alert } from 'react-native';
 import usersRespository from '../../services/database/users/users.respository';
+import formatDate from '../../utils/formatDate';
 
 
 const Dashboard: React.FC = () => {
@@ -44,6 +45,8 @@ const Dashboard: React.FC = () => {
         const scheds = await UserServices.getAllUserSchedules(firebase.auth().currentUser?.uid as string);
         setSchedules(scheds ? scheds : []);
         setLoading(false);
+        await UserServices.AlertSchedule(firebase.auth().currentUser?.uid as string, formatDate(new Date()));
+
     }
 
     useEffect(() => {
@@ -113,20 +116,20 @@ const Dashboard: React.FC = () => {
                     activeTextStyle={{ color: '#F4EDE8', fontFamily: 'RobotoSlab-Medium' }}
                 >
                     <ProfessorList
-                        ListEmptyComponent={ 
-                            loading ? 
-                            (
-                                <Spinner
-                                    color="#F4EDE8"
-                                    size="large"
-                                />
-                            ) : (
-                                <ProfessorMetaText
-                                    style={{ textAlign:"center", paddingTop: 250, fontSize: 15 }}
-                                >
-                                    Sem Professores !
-                                </ProfessorMetaText>
-                            )
+                        ListEmptyComponent={
+                            loading ?
+                                (
+                                    <Spinner
+                                        color="#F4EDE8"
+                                        size="large"
+                                    />
+                                ) : (
+                                    <ProfessorMetaText
+                                        style={{ textAlign: "center", paddingTop: 250, fontSize: 15 }}
+                                    >
+                                        Sem Professores !
+                                    </ProfessorMetaText>
+                                )
                         }
                         data={professors}
                         keyExtractor={(item) => item.id}
@@ -157,20 +160,20 @@ const Dashboard: React.FC = () => {
                     activeTextStyle={{ color: '#F4EDE8', fontFamily: 'RobotoSlab-Medium' }}
                 >
                     <SchedulesList
-                        ListEmptyComponent={ 
-                            loading ? 
-                            (
-                                <Spinner
-                                    color="#F4EDE8"
-                                    size="large"
-                                />
-                            ) : (
-                                <SchedulesMetaText
-                                    style={{ textAlign:"center", paddingTop: 250, fontSize: 15 }}
-                                >
-                                    Sem Agendamentos !
-                                </SchedulesMetaText>
-                            )
+                        ListEmptyComponent={
+                            loading ?
+                                (
+                                    <Spinner
+                                        color="#F4EDE8"
+                                        size="large"
+                                    />
+                                ) : (
+                                    <SchedulesMetaText
+                                        style={{ textAlign: "center", paddingTop: 250, fontSize: 15 }}
+                                    >
+                                        Sem Agendamentos !
+                                    </SchedulesMetaText>
+                                )
                         }
 
                         data={schedules.reverse()}
@@ -207,3 +210,7 @@ const Dashboard: React.FC = () => {
 }
 
 export default Dashboard;
+
+function formatedDate(arg0: Date): string {
+    throw new Error('Function not implemented.');
+}

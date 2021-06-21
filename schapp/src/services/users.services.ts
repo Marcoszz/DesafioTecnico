@@ -248,6 +248,22 @@ async function getAllUserTurns(id_user: string, date: string) {
     return schedules.filter(schedule => schedule.date === date).map(schedule => schedule.turn);
 }
 
+async function AlertSchedule(id_user: string, date: string) {
+    const schedules = await UserRepository.getAllSchedules(id_user);
+
+    if (!schedules) return false;
+
+    if (schedules.filter(sched => date === sched.date)) {
+        Alert.alert(
+            "Você tem agendamentos para hoje !",
+            "Fique de olho nos seus agendamentos :)"
+        )
+        return true;
+    }
+
+    return false;
+}
+
 export default {
     createUser,
     createSchedule,
@@ -256,7 +272,8 @@ export default {
     updateUser,
     logoutUser,
     removeSchedule,
-    getAllUserTurns
+    getAllUserTurns,
+    AlertSchedule
 }
 
 
