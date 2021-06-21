@@ -45,8 +45,6 @@ const Dashboard: React.FC = () => {
         const scheds = await UserServices.getAllUserSchedules(firebase.auth().currentUser?.uid as string);
         setSchedules(scheds ? scheds : []);
         setLoading(false);
-        await UserServices.AlertSchedule(firebase.auth().currentUser?.uid as string, formatDate(new Date()));
-
     }
 
     useEffect(() => {
