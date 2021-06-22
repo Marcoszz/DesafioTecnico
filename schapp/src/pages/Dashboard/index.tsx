@@ -26,8 +26,6 @@ import { IUserSchedule } from '../../services/database/users/users.interface';
 import Icon from 'react-native-vector-icons/Feather';
 import { Alert } from 'react-native';
 import usersRespository from '../../services/database/users/users.respository';
-import formatDate from '../../utils/formatDate';
-
 
 const Dashboard: React.FC = () => {
     const navigation = useNavigation();
