@@ -151,9 +151,9 @@ const CreateScheduling: React.FC = () => {
             </ProfessorListContainer>
 
             <Calendar>
-                <Title>Escolha um horário</Title>
-                <RestButton onPress={handleToggleDate} enabled={true}>
-                    <RestButtonText>Escolher outro horário</RestButtonText>
+                <Title>Escolha uma data</Title>
+                <RestButton onPress={handleToggleDate} style={{marginTop:0}} enabled={true}>
+                    <RestButtonText>Escolher outro data</RestButtonText>
                 </RestButton>
 
                 {showDate &&

@@ -19,7 +19,7 @@ async function createSchedule(id_professor: string, date: string, turn?: TurnTyp
         if (!turn) {
             Alert.alert(
                 "Erro no cadastro do horário",
-                `Selecione uma data`
+                `Selecione uma data e um turno.`
             )
             return false;
         }

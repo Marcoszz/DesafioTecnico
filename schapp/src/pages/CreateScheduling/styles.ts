@@ -82,7 +82,7 @@ export const ScheduleButton = styled(RectButton) <TurnContainerProps>`
     align-items: center;
     justify-content: center;
     margin: 0 24px;
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 `
 export const ScheduleButtonText = styled.Text <TurnTextProps>`
     font-family: 'RobotoSlab-Medium';
@@ -108,7 +108,8 @@ export const RestButton = styled(RectButton)`
     align-items: center;
     justify-content: center;
     margin: 0 24px;
-    margin-bottom: 48px;
+    margin-top:25px;
+    margin-bottom: 32px;
 `
 export const RestButtonText = styled.Text`
     font-family: 'RobotoSlab-Medium';

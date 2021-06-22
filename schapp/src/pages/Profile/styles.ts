@@ -27,6 +27,6 @@ export const BackButton = styled.TouchableOpacity`
 `
 export const LogOutButton = styled.TouchableOpacity`
     position: absolute;
-    left: 390px;
+    left: 370px;
     top: 24px;
 `
